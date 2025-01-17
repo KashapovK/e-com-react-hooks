@@ -8,7 +8,7 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
-  const addToCart = useStore(state => state.addToCart);
+  const { addToCart } = useStore();
 
   return (
     <div className="product-card">

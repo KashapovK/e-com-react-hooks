@@ -3,7 +3,8 @@ import "./css/cart.css";
 import { useStore } from "./store";
 
 const Cart: React.FC = () => {
-  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useStore();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } =
+    useStore();
 
   return (
     <div className="cart-container">
