@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { StoreState } from "./types/types";
+import { StoreState } from "./types";
 
 export const StoreContext = createContext<StoreState | undefined>(undefined);
 

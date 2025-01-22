@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Product from "./product";
 import Cart from "./cart";
 import products from "./mocks/products";
-import { CartItem } from "./types/types";
+import { CartItem } from "./types";
 import { useStore } from "./store";
 
 const App: React.FC = () => {
