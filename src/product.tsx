@@ -1,7 +1,7 @@
-import React from "react";
-import "./css/product.css";
-import { CartItem } from "./types";
-import { useStore } from "./store";
+import React from 'react';
+import './css/product.css';
+import { CartItem } from './types';
+import { useStore } from './store';
 
 interface ProductProps {
   product: CartItem;

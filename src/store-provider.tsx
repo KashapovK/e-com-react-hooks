@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { CartItem, Product } from "./types";
-import { StoreContext } from "./store";
+import React, { useState } from 'react';
+import { CartItem, Product } from './types';
+import { StoreContext } from './store';
 
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
