@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { act } from 'react';
+import { assert } from 'chai';
 import { useStore } from '../src/store';
 import { StoreProvider } from '../src/store-provider';
 import { Product } from '../src/types';
@@ -13,7 +14,7 @@ describe('StoreProvider', () => {
       result.current.addToCart({ ...product, quantity: 1 });
     });
 
-    expect(result.current.cart).toEqual([{ ...product, quantity: 1 }]);
+    assert.deepEqual(result.current.cart, [{ ...product, quantity: 1 }]);
   });
 
   it('addToCart увеличивает количество товара, если товар уже в корзине', () => {
@@ -22,12 +23,10 @@ describe('StoreProvider', () => {
 
     act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
     });
 
-    expect(result.current.cart[0].quantity).toBe(2);
+    assert.equal(result.current.cart[0].quantity, 2);
   });
 
   it('removeFromCart удаляет товар из корзины', () => {
@@ -36,12 +35,10 @@ describe('StoreProvider', () => {
 
     act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.removeFromCart(product.id);
     });
 
-    expect(result.current.cart).toEqual([]);
+    assert.deepEqual(result.current.cart, []);
   });
 
   it('increaseQuantity увеличивает количество товара в корзине', () => {
@@ -50,12 +47,10 @@ describe('StoreProvider', () => {
 
     act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.increaseQuantity(product.id);
     });
 
-    expect(result.current.cart[0].quantity).toBe(2);
+    assert.equal(result.current.cart[0].quantity, 2);
   });
 
   it('decreaseQuantity уменьшает количество товара, если оно больше 1', () => {
@@ -64,15 +59,11 @@ describe('StoreProvider', () => {
 
     act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.decreaseQuantity(product.id);
     });
 
-    expect(result.current.cart[0].quantity).toBe(1);
+    assert.equal(result.current.cart[0].quantity, 1);
   });
 
   it('decreaseQuantity удаляет товар из корзины, если quantity равно 1', () => {
@@ -81,12 +72,10 @@ describe('StoreProvider', () => {
 
     act(() => {
       result.current.addToCart({ ...product, quantity: 1 });
-    });
-    act(() => {
       result.current.decreaseQuantity(product.id);
     });
 
-    expect(result.current.cart).toEqual([]);
+    assert.deepEqual(result.current.cart, []);
   });
 
   it('setProducts устанавливает список продуктов', () => {
@@ -97,6 +86,6 @@ describe('StoreProvider', () => {
       result.current.setProducts(products);
     });
 
-    expect(result.current.products).toEqual(products);
+    assert.deepEqual(result.current.products, products);
   });
 });
