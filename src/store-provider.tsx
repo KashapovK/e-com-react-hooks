@@ -39,11 +39,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const decreaseQuantity = (id: string) => {
     setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
-        )
-        .filter((item) => item.quantity > 0),
+      prevCart.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
+          : item,
+      ),
     );
   };
 

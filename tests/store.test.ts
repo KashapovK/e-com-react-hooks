@@ -66,17 +66,17 @@ describe('StoreProvider', () => {
     assert.equal(result.current.cart[0].quantity, 1);
   });
 
-  it('decreaseQuantity удаляет товар из корзины, если quantity равно 1', () => {
-    const { result } = renderHook(() => useStore(), { wrapper: StoreProvider });
-    const product: Product = { id: '1', name: 'Test Product', price: 100 };
+it('decreaseQuantity не удаляет товар из корзины, если quantity равно 1', () => {
+  const { result } = renderHook(() => useStore(), { wrapper: StoreProvider });
+  const product: Product = { id: '1', name: 'Test Product', price: 100 };
 
-    act(() => {
-      result.current.addToCart({ ...product, quantity: 1 });
-      result.current.decreaseQuantity(product.id);
-    });
-
-    assert.deepEqual(result.current.cart, []);
+  act(() => {
+    result.current.addToCart({ ...product, quantity: 1 });
+    result.current.decreaseQuantity(product.id);
   });
+
+  assert.deepEqual(result.current.cart, [{ ...product, quantity: 1 }]);
+});
 
   it('setProducts устанавливает список продуктов', () => {
     const { result } = renderHook(() => useStore(), { wrapper: StoreProvider });
